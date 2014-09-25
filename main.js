@@ -1,48 +1,72 @@
-// This JavaScript program loads a JSON file
-// and renders the posts of the blog.
+// This JavaScript program reads "posts.json" and renders
+// the data to the page.
+//
+// By Curran Kelleher 9/25/2014 curran.kelleher@gmail.com
 
-// This function asynchronously fetches the text content
-// of the file "posts.json" and passes the JSON string into the
-// given callback function 
-function fetchPostsJSON(callback){
+(function () {
 
-  // Fetch the JSON file using XMLHttpRequest.
-  // Draws from:
-  // http://en.wikipedia.org/wiki/XMLHttpRequest
-  // http://vanilla-js.com/
-  // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
-  // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest
-  var request = new XMLHttpRequest();
-  request.onload = function () {
-    // Pass the loaded JSON string to the callback.
-    callback(request.responseText);
-  };
-  request.open("GET", "posts.json", true);
-  request.send(null);
-}
+  // Adds a DOM structure for each post.
+  function renderPosts(posts) {
 
-function renderPosts(posts){
+    // Get the DOM element that will contain the posts.
+    var postsDiv = document.getElementById("posts");
 
-  // Get the DOM element that will contain the posts.
-  var postsDiv = document.getElementById("posts");
+    posts.forEach(function (post) {
 
-  // Add an HTML structure to the posts div for each post.
-  posts.forEach(function (post) {
-    var postDiv = document.createElement("div");
-    postDiv.innerHTML = post.content;
-    postsDiv.appendChild(postDiv);
+      // Create the DOM elements.
+      var postDiv = document.createElement("div"),
+          postNameDiv = document.createElement("div"),
+          postAuthorDiv = document.createElement("div"),
+          postContentDiv = document.createElement("div");
+
+      // Set the content of each element.
+      postNameDiv.innerHTML = post.name;
+      postAuthorDiv.innerHTML = post.author;
+      postContentDiv.innerHTML = post.content;
+
+      // Set CSS classes on each div so they can be styled.
+      postDiv.setAttribute("class", "post");
+      postNameDiv.setAttribute("class", "post-name");
+      postAuthorDiv.setAttribute("class", "post-author");
+      postContentDiv.setAttribute("class", "post-content");
+
+      // Assemble the post div.
+      postDiv.appendChild(postNameDiv);
+      postDiv.appendChild(postAuthorDiv);
+      postDiv.appendChild(postContentDiv);
+
+      // Add the post div to the container for posts.
+      postsDiv.appendChild(postDiv);
+    });
+  }
+
+  // Fetches the file "posts.json" and passes the parsed JSON object 
+  // into the given callback function.
+  function getPosts(callback){
+
+    // Fetch the JSON file using XMLHttpRequest.
+    // Draws from:
+    // http://en.wikipedia.org/wiki/XMLHttpRequest
+    // http://vanilla-js.com/
+    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
+    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest
+    var request = new XMLHttpRequest();
+
+    // When the file has loaded,
+    request.onload = function () {
+
+      // parse the JSON text into an array of post objects.
+      var posts = JSON.parse(request.responseText);
+
+      // Pass the posts array to the callback.
+      callback(posts);
+    };
+    request.open("GET", "posts.json", true);
+    request.send(null);
+  }
+
+  // The main program, which gets then renders posts.
+  getPosts(function (posts) {
+    renderPosts(posts);
   });
-
-}
-
-// Build the DOM from the JSON data.
-// Fetch the file,
-fetchPostsJSON(function (responseText) {
-
-  // parse the JSON file into an array of Post objects
-  var posts = JSON.parse(responseText);
-
-  // render the posts.
-  renderPosts(posts);
-
-});
+}());

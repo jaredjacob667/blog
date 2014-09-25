@@ -1,4 +1,1 @@
-blog
-====
-
-My blog.
+An example dynamic HTML blog skeleton.
