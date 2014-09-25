@@ -1,1 +1,1 @@
-An example dynamic HTML blog skeleton.
+Everything is in the gh-pages branch.
