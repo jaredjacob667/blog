@@ -6,17 +6,28 @@
 
 /* Make post names large. */
 .post-name {
-  font-size: 24pt;
+  font-size: 28pt;
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  width:400px;
 }
 
 /* Make post authors blue. */
 .post-author {
-  color: blue;
+  color: Black;
+  font-size: 20pt;
+  font-style: italic;
+  font-weight: bold;
 }
 
 /* Make post content green. */
 .post-content {
-  color: green;
+  color: black;
+  width: 400px;
+  padding-bottom: 20px;
+  background-color: grey;
+  border: 2px black solid;
 }
 
 /* The below CSS gets applied on devices with small screens. */
@@ -24,11 +35,11 @@
  
   /* Reduce the margin. */
   body {
-    margin: 0px ;
+    margin: 5px;
   }
  
   /* Make the post content larger. */
   .post-content {
-    font-size: 18pt ;
+    font-size: 18pt;
   }
 }
