@@ -1,5 +1,7 @@
 
-
+@import url(http://fonts.googleapis.com/css?family=Lato);
+@import url(http://fonts.googleapis.com/css?family=Ubuntu);
+/* google fonts ^ */
   /* 
   File: /~jjacob/public_html/Assignment7/assignment7.css
   91.461 Assignment: Creating a Single-Page Navigation Interface
@@ -68,10 +70,6 @@ table {
 
 /************************ END OF CSS RESET **************************/
 
-
-/*google fonts */
-@import url(http://fonts.googleapis.com/css?family=Lato);
-@import url(http://fonts.googleapis.com/css?family=Ubuntu);
 
 /* snowboarding background image that fills in window */
 body {
