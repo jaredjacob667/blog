@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!--  
+	File: /~jjacob/public_html/Assignment7/assignment7.html
+	91.461 Assignment: Creating a Single-Page Navigation Interface
+  Created by: Jared Jacob
+  email: jaredjacob667@gmail.com
+  UMass lowell computer science student 91.461 GUI Programming 1
+  UPDATED: 11/04/2014
+
+  Description: This is the html for the single page web application. This will contain
+  multiple navigation buttons that will lead you to different ski resorts information without
+  reloading the page. This page is run using jquery and event listeners in singlePageLoader.js
+  -->
+	<title>Local Snowboarding</title>
+	<link rel="stylesheet" type="text/css" href="assignment7.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="singlePageLoader.js"></script>
+</head>
+<body>
+	<!-- Hash tags used to link between pages without reloading page. singlePageLoader.js 
+			 takes those hashs and uses it to pick the correct content to display. -->
+	<nav>
+		<li><a href="#home">Home</a></li>
+		<li><a href="#Wachusett">Wachusett</a></li>
+		<li><a href="#SundayRiver">Sunday River</a></li>
+		<li><a href="#Cannon">Cannon</a></li>
+	</nav>
+
+	<!-- Placeholders for where content will be loaded from singlePageLoader.js -->
+	<div id="mainContent"></div>
+	<div id="trailMap"></div>
+
+</body>
+</html>
