@@ -1,0 +1,110 @@
+{
+	"RECORDS":[
+		{
+		"title":"12-Bar Original",
+		"year": "1965",
+		"album":"Anthology 2",
+		"song_writer": "Lennon, McCartney, Harrison, and Starkey",
+		"lead_vocals":"N/A"
+		},
+		{
+		"title":"Across the Universe",
+		"year": "1968",
+		"album":"Let It Be",
+		"song_writer": "Lennon",
+		"lead_vocals":"Lennon"
+		},
+		{
+		"title":"Act Naturally",
+		"year": "1965",
+		"album":"Help!",
+		"song_writer": "Russell and Morrison",
+		"lead_vocals":"Starkey"
+		},
+		{
+		"title":"Ain't She Sweet",
+		"year": "1961",
+		"album":"Anthology 1",
+		"song_writer": "Yellen and Ager",
+		"lead_vocals":"Lennon"
+		},
+		{
+		"title":"All I've Got to Do",
+		"year": "1963",
+		"album":"With the Beatles",
+		"song_writer": "Lennon",
+		"lead_vocals":"Lennon"
+		},
+		{
+		"title":"All My Loving",
+		"year": "1963",
+		"album":"With the Beatles",
+		"song_writer": "McCartney",
+		"lead_vocals":"McCartney"
+		},
+		{
+		"title":"All Things Must Pass",
+		"year": "1969",
+		"album":"Anthology 3",
+		"song_writer": "Harrison",
+		"lead_vocals":"Harrison"
+		},
+		{
+		"title":"All Together Now",
+		"year": "1967",
+		"album":"Yellow Submarine",
+		"song_writer": "McCartney with Lennon",
+		"lead_vocals":"McCartney with Lennon"
+		},
+
+		{
+		"title":"All You Need is Love",
+		"year": "1967",
+		"album":"Magical Mystery Tour",
+		"song_writer": "Lennon",
+		"lead_vocals":"Lennon"
+		},
+		{
+		"title":"And I Love Her",
+		"year": "1964",
+		"album":"A Hard Day's Night",
+		"song_writer": "McCartney with Lennon",
+		"lead_vocals":"McCartney"
+		},
+		{
+		"title":"And Your Bird Can Sing",
+		"year": "1966",
+		"album":"Revolver",
+		"song_writer": "Lennon with McCartney",
+		"lead_vocals":"Lennon"
+		},
+		{
+		"title":"Anna (Go to Him)",
+		"year": "1963",
+		"album":"Please Please Me",
+		"song_writer": "Alexander",
+		"lead_vocals":"Lennon"
+		},
+		{
+		"title":"Another Girl",
+		"year": "1965",
+		"album":"Help!",
+		"song_writer": "McCartney",
+		"lead_vocals":"McCartney"
+		},
+		{
+		"title":"Any Time at All",
+		"year": "1964",
+		"album":"A Hard Day's Night",
+		"song_writer": "Lennon with McCartney",
+		"lead_vocals":"Lennon with McCartney"
+		},
+		{
+		"title":"Ask Me Why",
+		"year": "1962",
+		"album":"Please Please Me",
+		"song_writer": "Lennon with McCartney",
+		"lead_vocals":"Lennon"
+		}
+	]
+}

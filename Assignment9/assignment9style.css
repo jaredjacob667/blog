@@ -1,0 +1,135 @@
+/*
+  File: /~jjacob/public_html/Assignment9/Assignment9style.css
+  91.461 Assignment: Using AngularJS
+  Created by: Jared Jacob
+  email: jaredjacob667@gmail.com
+  UMass lowell computer science student 91.461 GUI Programming 1
+  UPDATED: 12/4/2014
+
+  Description: Adapted from
+  https://teaching.cs.uml.edu/~heines/91.461/91.461-2014-15f/461-assn/code/Assn09-Starter/jmh-assn09.css 
+
+  Changed to display Beatles.json data. Comments from professor left in. Added new gradients and
+  styles for Assignment9Index.html
+*/
+ 
+/* Sets the background of page to black and font white */
+body {
+  background-color: black;
+  font-family: Verdana, Arial, Helvetica, sans-serif ;
+  font-size: 12pt ;
+  color: white;
+}
+/* 
+Makes form with inputs in labels line up.
+The labels on the left with the input right aligned.
+*/
+form {
+  width: 325px;
+}
+input {
+  width: 100px;
+  display: inline;
+  float: right;
+  padding-bottom: 5px;
+}
+label {
+  width: 200px;
+  padding-top: 3px;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* 
+Code changed from a table generator. 
+http://www.csstablegenerator.com/
+
+Parts adapted from it with gradients and shadows to 
+Jesse's old css
+*/
+#tblSubmissions {
+  margin:0px;padding:0px;
+  width:100%;
+  box-shadow: 10px 10px 5px #888888;
+  border:1px solid #000000;
+  -moz-border-radius-bottomleft:9px;
+  -webkit-border-bottom-left-radius:9px;
+  border-bottom-left-radius:9px;
+  -moz-border-radius-bottomright:9px;
+  -webkit-border-bottom-right-radius:9px;
+  border-bottom-right-radius:9px;
+  -moz-border-radius-topright:9px;
+  -webkit-border-top-right-radius:9px;
+  border-top-right-radius:9px;
+  -moz-border-radius-topleft:9px;
+  -webkit-border-top-left-radius:9px;
+  border-top-left-radius:9px;
+}
+#tblSubmissions tr:last-child td:last-child {
+  -moz-border-radius-bottomright:9px;
+  -webkit-border-bottom-right-radius:9px;
+  border-bottom-right-radius:9px;
+}#tblSubmissions table tr:first-child td:first-child {
+  -moz-border-radius-topleft:9px;
+  -webkit-border-top-left-radius:9px;
+  border-top-left-radius:9px;
+}#tblSubmissions table tr:first-child td:last-child {
+  -moz-border-radius-topright:9px;
+  -webkit-border-top-right-radius:9px;
+  border-top-right-radius:9px;
+}#tblSubmissions tr:last-child td:first-child{
+  -moz-border-radius-bottomleft:9px;
+  -webkit-border-bottom-left-radius:9px;
+  border-bottom-left-radius:9px;
+}
+
+#tblSubmissions thead tr th {
+  background:-o-linear-gradient(bottom, #0069d3 5%, #007fff 100%);  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #0069d3), color-stop(1, #007fff) );
+  background:-moz-linear-gradient( center top, #0069d3 5%, #007fff 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#0069d3", endColorstr="#007fff");  background: -o-linear-gradient(top,#0069d3,007fff);
+  background-color:#0069d3;
+  border:0px solid #000000;
+  text-align:center;
+  border-width:0px 0px 1px 1px;
+  font-size:18pt;
+  font-family:Comic Sans MS;
+  font-weight:bold;
+  color:#ffffff;
+}
+
+/* indicate that certain columns are clickable */
+#tblSubmissions thead tr th:nth-child(2),
+#tblSubmissions thead tr th:nth-child(3),
+#tblSubmissions thead tr th:nth-child(4) {
+  color: black ; 
+}
+
+/* handle rollovers on clickable columns */
+#tblSubmissions thead tr th:nth-child(2):hover,
+#tblSubmissions thead tr th:nth-child(3):hover,
+#tblSubmissions thead tr th:nth-child(4):hover {
+  cursor: pointer ;
+  color: black ;
+  background:-o-linear-gradient(bottom, #ffff00 5%, #ffff56 100%);  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffff00), color-stop(1, #ffff56) );
+  background:-moz-linear-gradient( center top, #ffff00 5%, #ffff56 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffff00", endColorstr="#ffff56");  background: -o-linear-gradient(top,#ffff00,ffff56);
+  background-color:#ffff00;
+}
+
+/* align all table body cells to the top of their cells*/
+#tblSubmissions tbody tr td {
+  vertical-align: top ;
+  background:-o-linear-gradient(bottom, #56aaff 5%, #82c0ff 100%);  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #56aaff), color-stop(1, #82c0ff) ); 
+  background:-moz-linear-gradient( center top, #56aaff 5%, #82c0ff 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#56aaff", endColorstr="#82c0ff");  background: -o-linear-gradient(top,#56aaff,82c0ff);
+  background-color:#56aaff;
+  border:1px solid #000000;
+  border-width:0px 1px 1px 0px;
+  text-align:left;
+  padding:7px;
+  font-size:12pt;
+  font-family:Comic Sans MS;
+  font-weight:bold;
+  color:#000000;
+}
+ 

@@ -1,0 +1,214 @@
+<html ng-app="assign9app">
+<head>
+  <meta charset="utf-8">
+  <!--  
+  File: /~jjacob/public_html/Assignment9/Assignment9Index.html
+  91.461 Assignment: Using AngularJS
+  Created by: Jared Jacob
+  email: jaredjacob667@gmail.com
+  UMass lowell computer science student 91.461 GUI Programming 1
+  UPDATED: 12/4/2014
+
+  Description: This page is adapted from
+  https://teaching.cs.uml.edu/~heines/91.461/91.461-2014-15f/461-assn/code/Assn09-Starter/jmh-assn09-v4.html
+
+  Changed to display Beatles.json data. Comments from professor left in. Added functionality to filter by album
+  with user input. Filters file also used, but utilites was not used.
+  -->
+  <title>Assignment 9</title>
+  
+  <!-- Angular.js version 1.3.5 from Google hosted libraries -->
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+
+  
+  <script>
+
+  /* 
+  Changed code 
+  https://teaching.cs.uml.edu/~heines/91.461/91.461-2014-15f/461-assn/code/Assn09-Starter/jmh-assn09-v4.html
+  
+  to fit new json file Beatles.json. Initial sorted on song title
+  */
+    "use strict" ;  // to ensure that all variables are declared before use
+
+    // the number of the last column sorted, initialized to the title column
+    var lastSortColumnNo = 2 ;
+    // a flag indicating whether the last sort was ascending (true) or descending (false)
+    var lastSortDescending = false ;
+    
+    // set up AngularJS module, note that name must be the same as that in the 
+    //    ng-app attribute of the html tag above
+    var myApp = angular.module( 'assign9app', [] ) ;
+    
+    // set a constant to the JSON file path
+    myApp.constant( "jsonUrl", "Beatles.json" ) ;
+                                
+    // add business logic to the app controller
+    myApp.controller( 'assign9Ctrl',
+      /** Read JSON data using Ajax - adapted from Pro AngularJS, p. 149.
+       *  @param $scope  the standard AngularJS model scope
+       *  @param $http   the built-in AngularJS http object containing the get function
+       *  @param jsonURL the app constant containing the JSON file path (defined above)
+       */
+      function( $scope, $http, jsonUrl ) {
+        $scope.jsonData = {} ;              // initialize an object in the model's scope
+        $http.get( jsonUrl )                // perform the Ajax call
+          .success( function( data ) {      // execute this function if the Ajax succeeds
+            $scope.jsonData.data = data ;   // set the model's jsonData.data property to the
+          } )                               //    data returned by the Ajax call
+          .error( function( error )  {      // execute this function if the Ajax fails
+            $scope.jsonData.error = error ; // set the model's jsonData.error property to the
+          } ) ;                             //    error returned by the Ajax call
+        
+        
+        // set the initial sort field (title) and sort order (ascending)
+        $scope.sortField = "title" ;
+        $scope.sortDescending = false ;
+
+        /* 
+        Resets the search form
+        http://stackoverflow.com/questions/22459914/reset-button-in-angular-js
+        */
+        $scope.resetForm = function ()
+        {
+          $scope.jsonDataSearch = {};
+        }
+
+        /**
+         *  OLD COMMENTS FROM Jesse Heines code. ***********************  
+         *  Sort column clicked in either ascending or descending order.
+         *  Note that this could also be accomplished using the built-in AngularJS orderBy
+         *    filter and manipulating the sort field and reverse parameters.
+         *  Also note that this code could also have been incorporated into the ng-click 
+         *    directives on the table's th elements, but doing it here gave me more central
+         *    control, and I think that this function makes what's going on clearer and 
+         *    therefore easier to maintain.
+         *  @param colNo the number of the column header clicked
+         */
+        $scope.sortColumn = function( colNo ) {
+          
+          //Changed by Jared
+          //This makes the function able to take in the colName as opposed to column number.
+          //Makes for easier debugging in the html.
+          /*
+          var colNo;
+          var colNames = String(colName);
+
+          switch (colNames) { 
+          case "title":
+            colNo = 2;
+            break;
+          case "year":
+            colNo = 3;
+            break;
+          case "album":
+            colNo = 4;
+            break;
+          default:
+            console.log("check what your colName came out to.");
+            console.log(colName);
+          }
+          */
+
+          $scope.sortDescending = lastSortColumnNo === colNo && ! lastSortDescending ;
+              // true to sort in descending order, false to sort in ascending order
+              // will be false if sorting a new column or last sort was descending
+          if ( colNo === 2 ) {
+            $scope.sortField = "title" ;
+
+          } else if ( colNo === 3 ) {
+            $scope.sortField = "year" ;
+          
+          } else if ( colNo === 4 ) {
+            $scope.sortField = "album" ;
+          }
+
+          // save the sort parameters for the next click
+          lastSortDescending = $scope.sortDescending ;
+          lastSortColumnNo = colNo ;
+        }
+      }
+    ) ;
+  </script>
+
+  <!-- 
+  filter functions for this app
+  Taken from 
+  https://teaching.cs.uml.edu/~heines/91.461/91.461-2014-15f/461-assn/code/Assn09-Starter/jmh-assn09-filters.js
+
+  Changed do only have functions I use below including increment which setups 
+  the simple number for the number column.
+
+  jmh-assn09-utilities.js was not used as the functions were not needed.
+   -->
+  <script src="filters.js"></script>
+  
+  <!-- CSS for this app -->
+  <link rel="stylesheet" type="text/css" href="assignment9style.css">
+
+</head>
+
+<body>
+  <!-- the main view, controlled by AngularJS -->
+  <div ng-controller="assign9Ctrl">
+
+  <!-- page head and version information -->
+  <h1 id="maintitle">Beatles Songs</h1>
+  
+  <!-- directions -->
+  <p><em>Click on title, year, or album to sort them. Use the search bar to limit the songs you see.</em></p>
+
+    <!-- 
+      show number of records in the JSON data
+        http://stackoverflow.com/questions/19956074/how-can-i-show-a-count-of-rows-from-an-ng-repeat
+    -->
+    <p> {{(jsonData.data.RECORDS).length}} songs currently shown. </p>
+    
+    <form>
+      <label>Search Title: </label><input ng-model="jsonDataSearch.title"><br>
+      <label>Search Year: </label><input ng-model="jsonDataSearch.year"><br>   
+      <label>Search Album: </label><input ng-model="jsonDataSearch.album"><br>
+      <label>Search Song Writers: </label><input ng-model="jsonDataSearch.song_writer"><br>
+      <label>Search Lead Vocals: </label><input ng-model="jsonDataSearch.lead_vocals"><br>
+      <button type="button" ng-click="resetForm()">Reset Search Values</button>
+    </form>
+    
+    <!-- the table controlled by the AngularJS controller -->
+    <table id="tblSubmissions">
+      <!-- the column heads -->
+      <thead>
+        <tr>
+          <th>#</th>
+          <th ng-click="sortColumn(2)">Title</th>
+          <th ng-click="sortColumn(3)">Year</th>
+          <th ng-click="sortColumn(4)">Album</th>
+          <th>Song Writer(s)</th>
+          <th>Lead Vocals</th>
+        </tr>
+      </thead>
+      <!-- 
+        AngularJS template for each row of the table 
+        the ng-model attribute causes the data to be re-rendered when the jsonData changes
+      -->
+      <tbody ng-model="jsonData">
+        <tr ng-repeat="beatlesObj in jsonData.data.RECORDS | orderBy : sortField : sortDescending | filter:jsonDataSearch">
+          
+          <!-- 
+          the built-in AngularJS loop index
+          Adds the number of the entry column    
+           -->
+          <td>{{$index | increment}}</td>
+          
+          <td>{{beatlesObj.title}}</td>
+          <td>{{beatlesObj.year}}</td>
+          <td>{{beatlesObj.album}}</td>
+          <td>{{beatlesObj.song_writer}}</td>
+          <td>{{beatlesObj.lead_vocals}}</td>
+        
+        </tr>
+      </tbody>
+
+    </table>
+  </div> 
+</body>
+</html>
